@@ -1,0 +1,17 @@
+{
+    "name": "user/basdat13",
+    "autoload": {
+        "psr-4": {
+            "User\\Basdat13\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lostboiii",
+            "email": "dafasetiadi55@gmail.com"
+        }
+    ],
+    "require": {
+        "mongodb/mongodb": "^1.20"
+    }
+}
