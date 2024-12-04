@@ -170,13 +170,13 @@ class home
                     </select>
                 </header>
 
-                <section class="header2">
+                <nav class="header2">
                     <h2>
                         <img src = "./../fe/img/newsTing.png" alt="" width="400">
                         <p>informasi terkini, Cepat, dan Pasti terpecaya.<p>
                     </h2>
 
-                </section>
+            </nav>
                 <div class="news-grid">
                     <?php foreach ($this->news_data as $news): ?>
                     <div class="news-card">
