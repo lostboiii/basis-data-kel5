@@ -1,5 +1,6 @@
 <?php
-require 'db.php';
+session_start(); 
+require '../db.php';
 if ($_SESSION['loggedin'] == false) {
     header('Location: ../index.php');
     exit();

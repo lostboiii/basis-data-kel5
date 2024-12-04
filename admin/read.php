@@ -18,6 +18,7 @@ if($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])){
 </head>
 <body>
     <h1><?= htmlspecialchars($post['title']) ?></h1>
+    <img src="<?= htmlspecialchars($post['image_path'])?>" alt="">
     <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
     <p>Author: <?= htmlspecialchars($post['author']) ?></p>
     <p>Category: <?= htmlspecialchars($post['category']) ?></p>
