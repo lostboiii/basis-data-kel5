@@ -154,6 +154,10 @@ class home
                 .news-card .actions .delete:hover {
                     background-color: #dc2626;
                 }
+
+                .link-articel {
+                    font-size: 20px;
+                }
             </style>
         </head>
         <body class="body">
@@ -182,7 +186,7 @@ class home
                     <div class="news-card">
                         <img src="<?= $news['image'] ?>" alt="<?= $news['title'] ?>">
                         <div class="content">
-                            <h2><?= $news['title'] ?></h2>
+                            <a class="link-articel" href="baca.php"><?= $news['title'] ?></a>
                             <p><?= $news['description'] ?></p>
                             <div class="actions">
                                 <span><?= $news['date'] ?></span>
@@ -202,6 +206,5 @@ class home
     }
 }
 
-// Penggunaan
 $newsPage = new home();
 $newsPage->render();
