@@ -50,15 +50,6 @@
         border-radius: 8px;
     }
     
-    /* Link Lupa Kata Sandi */
-    .forgot-password-link {
-        color: #295F98; 
-        text-decoration: underline;
-        font-size: 0.9rem;
-    }
-    .forgot-password-link:hover {
-        color: #5A3E36; 
-    }
 </style>
 
 </head>
@@ -124,8 +115,6 @@
                     </div>
                     
                     <button type="submit" class="btn btn-primary w-100">LOGIN</button>
-                    <div class="mt-3 text-center">
-                        <a href="#" class="forgot-password-link">Lupa Kata Sandi?</a>
                     </div>
                 </form>
             </div>

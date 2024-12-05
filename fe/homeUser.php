@@ -238,23 +238,52 @@ class Home
                     gap: 10px;
                 }
 
-                .tambah-berita-btn {
-                    padding: 12px 20px;
+                .search-container {
+                    position: relative;
+                    display: inline-block;
+                    width: 100%;
+                    max-width: 400px;
+                }
+
+                .search-input {
+                    width: 100%;
+                    padding: 10px 40px 10px 15px;
                     font-size: 1rem;
-                    background-color: #ffffff;
-                    border: none;
+                    border: 1px solid #ccc;
                     border-radius: 30px;
-                    cursor: pointer;
                     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                    transition: background-color 0.3s ease;
-                    font-weight: 600;
-                    text-align: center;
+                    transition: border-color 0.3s ease;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
 
-                .tambah-berita-btn:hover {
-                    background-color: #e6f1ff;
+                .search-input:focus {
+                    outline: none;
+                    border-color: #007bff;
                 }
 
+                .search-icon {
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    transform: translateY(-50%);
+                    width: 40px;
+                    height: 40px;
+                    cursor: pointer;
+                    opacity: 0.8;
+                    transition: opacity 0.3s ease, transform 0.3s ease;
+                }
+
+                .search-icon:hover {
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1.2);
+                }
+
+                .header-actions {
+                    display: flex;
+                    gap: 15px;
+                }
 
             </style>
         </head>
@@ -270,7 +299,10 @@ class Home
                         <option value="kategori2">Kategori 2</option>
                         <option value="kategori3">Kategori 3</option>
                     </select>
-                    <button class="tambah-berita-btn" onclick="window.location.href='./tambahBerita.php'">Tambah Berita</button>
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="Cari berita...">
+                        <img src="./../fe/img/search.png" alt="Search" class="search-icon">
+                    </div>
                 </div>
             </header>
 
