@@ -1,6 +1,7 @@
 <?php
 session_start(); 
-
+require 'db.php';
+require 'vendor/autoload.php';
 
 $validUsername = 'admin';
 $validPassword = 'admin';
@@ -9,6 +10,9 @@ $message = '';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $db = getDB();
+    $collection = $db->users;
+
     $username = $_POST['username'] ?? '';
     $password = $_POST['password'] ?? '';
     if (empty($_POST["username"])) {
@@ -17,7 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($_POST["password"])) {
         $passwordError = "Kolom ini harus diisi";
     }
+    $user = $collection->findOne(['username' => $username]);
 
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $username;
+        header("Location: index.php");
+        exit();
+    } else {
+        echo "Invalid username or password.";
+    }
     if ($username === $validUsername && $password === $validPassword) {
         $_SESSION['loggedin'] = true; 
         $_SESSION['username'] = $username; 
@@ -32,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amba Hotel - Login</title>
+    <title>News Ting Ting - Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
     /* Background halaman */
@@ -113,9 +126,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     
                     <button type="submit" class="btn btn-primary w-100">LOGIN</button>
-                    <div class="mt-3 text-center">
-                        <a href="#" class="forgot-password-link">Lupa Kata Sandi?</a>
-                    </div>
                 </form>
             </div>
         </div>

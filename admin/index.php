@@ -36,7 +36,7 @@ else{
 
                 /* Header Section */
                 .header {
-                    background: #295F98; /* Blue */
+                    background: #ffffff; /* Blue */
                     color: white;
                     padding: 20px 30px;
                     display: flex;
@@ -207,30 +207,57 @@ else{
                 .link-articel:hover {
                     color: #004085;
                 }
+                .button-new, .button-logout {
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 30px;
+    color: white;
+    background-color: #007bff; 
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.button-new:hover, .button-logout:hover {
+    background-color: #004085; 
+}
+
+.button-logout {
+    background-color: #dc3545;
+}
+
+.button-logout:hover {
+    background-color: #c82333; 
+}
             </style>
         </head>
         <body>
             <!-- Header -->
             <header class="header">
-                <h1>News Portal</h1>
-                <form method="GET" action="">
-                    <select class="category-dropdown" name="category">
-                    <option value="">Pilih Kategori</option>
-                    <?php
-                     $categories = ['Berita', 'Sosial', 'Edukasi', 'Kampus','Semua'];
-                    foreach ($categories as $category) {
-                    echo "<option value='$category'>$category</option>";
-                     }
-                    ?>
-                    </select>
-                    <button type="submit">Search</button>
-                </form>
-            </header>
+            <img src="../fe/img/newsTing.png" alt="News Tingting" style="width:300px">
+    <div style="display: flex; align-items: center; gap: 15px;">
+        <a href="create.php" class="button-new">Berita Baru</a>
+        <form method="GET" action="" style="margin: 0;">
+            <select class="category-dropdown" name="category" onchange="this.form.submit()">
+                <option value="Semua" <?= $searchQuery == 'Semua' ? 'selected' : '' ?>>Semua</option>
+                <?php
+                $categories = ['Berita', 'Sosial', 'Edukasi', 'Kampus'];
+                foreach ($categories as $category) {
+                    $selected = $searchQuery == $category ? 'selected' : '';
+                    echo "<option value='$category' $selected>$category</option>";
+                }
+                ?>
+            </select>
+        </form>
+        <a href="logout.php" class="button-logout">Logout</a>
+    </div>
+</header>
+
 
             <!-- Hero Section -->
             <div class="header2">
                 <img src="./../fe/img/newsTing.png" alt="News Tingting">
-                <h2>Informasi Terkini, Cepat, dan Terpercaya</h2>
+                <h2>Informasi Terkini, Cepat, dan Pasti Bikin Heboh!!!!</h2>
                 <p>Berita terbaru yang selalu up-to-date dan penuh informasi terpercaya.</p>
             </div>
 
@@ -244,11 +271,13 @@ else{
                             <p><?= $news['summary'] ?></p>
                             <div class="actions">
                                 <span><?= $news['created_at']->toDateTime()->format('F j, Y g:i A') ?></span>
-                                <div>
-                                <a href="edit.php?id=<?= $news['_id'] ?>">Edit</a>
-                                <a href="delete.php?id=<?= $news['_id'] ?>">Delete</a>
-                                </div>
+                                
                             </div>
+                            <div>
+                            <a href="edit.php?id=<?= $news['_id'] ?>">Edit</a>
+                            <a href="delete.php?id=<?= $news['_id'] ?>">Delete</a>
+                                </div>
+                           
                         </div>
                     </div>
                 <?php endforeach; ?>

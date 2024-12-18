@@ -3,7 +3,7 @@
         'name' => 'user/basdat13',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9ba1c607ada65daec469d63a529becb99ed9b1f6',
+        'reference' => 'ecb2ef092fdf223c8bad32cae3aa8a69fa3e0427',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -49,7 +49,7 @@
         'user/basdat13' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9ba1c607ada65daec469d63a529becb99ed9b1f6',
+            'reference' => 'ecb2ef092fdf223c8bad32cae3aa8a69fa3e0427',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

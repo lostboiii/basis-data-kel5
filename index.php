@@ -42,7 +42,7 @@ $news = $db->news->find($filter);
 
                 /* Header Section */
                 .header {
-                    background: #295F98; /* Blue */
+                    background: #fffff; /* Blue */
                     color: white;
                     padding: 20px 30px;
                     display: flex;
@@ -283,7 +283,7 @@ $news = $db->news->find($filter);
         <body>
             <!-- Header -->
             <header class="header">
-                <h1>News Portal</h1>
+            <img src="fe/img/newsTing.png" alt="News Tingting" style="width:300px">
                 <div class="header-actions">
                 <form method="GET" action="">
                     <select class="category-dropdown" name="category" onchange="this.form.submit()">
@@ -311,7 +311,7 @@ $news = $db->news->find($filter);
             <!-- Hero Section -->
             <div class="header2">
                 <img src="fe/img/newsTing.png" alt="News Tingting">
-                <h2>Informasi Terkini, Cepat, dan Terpercaya</h2>
+                <h2>Informasi Terkini, Cepat, dan Pasti Bikin Heboh!!!!</h2>
                 <p>Berita terbaru yang selalu up-to-date dan penuh informasi terpercaya.</p>
             </div>
 
@@ -324,7 +324,7 @@ $news = $db->news->find($filter);
                             <a href="read.php?id=<?=$news['_id']?>" class="link-articel"><?= $news['title'] ?></a>
                             <p><?= $news['summary'] ?></p>
                             <div class="actions">
-                                <span><?= $news['created_at']->toDateTime()->format('F j, Y g:i A') ?></span>
+                                <span><?= $news['author'] ?> | <?= $news['created_at']->toDateTime()->format('F j, Y g:i A') ?></span>
                             </div>
                         </div>
                     </div>
