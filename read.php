@@ -214,47 +214,83 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
             justify-content: center;
         }
 
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        .like-dislike-section {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
         .like-dislike-section button {
             margin-right: 10px;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            background-color: #357abd;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(31, 58, 147, 0.2);
         }
 
         .like-dislike-section button:hover {
-            background-color: #f0f0f0;
+            background-color: #2c50c1;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(31, 58, 147, 0.3);
         }
 
         .comments-section {
-            margin-top: 30px;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .comments-list {
             margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
+            border-top: 2px solid #1f3a93;
+            padding-top: 15px;
         }
 
         .comment {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment:hover {
+            background-color: #f9f9f9;
         }
 
         .comment strong {
             display: block;
             color: #1f3a93;
+            font-size: 1.1em;
+            margin-bottom: 5px;
         }
 
         .comment small {
-            color: #999;
+            color: #666;
+            font-style: italic;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
         }
 
         table, th, td {
@@ -262,12 +298,141 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
         }
 
         th, td {
-            padding: 10px;
+            padding: 12px;
             text-align: left;
+            transition: background-color 0.3s ease;
         }
 
         th {
+            background-color: #357abd;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
             background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+
+        /* Comments Section Styles */
+        .comments-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .comments-section h3 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .comments-section form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .comments-section textarea {
+            width: calc(100% - 20px); /* Reduced width to account for right margin */
+            min-height: 80px;
+            max-height: 150px;
+            padding: 12px;
+            margin-right: 20px; /* Added right margin */
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .comments-section textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
+        }
+
+        .comments-section textarea::placeholder {
+            color: #999;
+        }
+
+        .comments-section button {
+            align-self: flex-end;
+            padding: 10px 20px;
+            background-color: #1f3a93;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .comments-section button:hover {
+            background-color: #357abd;
+            transform: translateY(-2px);
+        }
+
+        .comments-section button:active {
+            transform: translateY(1px);
+        }
+
+
+        @media screen and (max-width: 600px) {
+            .comments-section {
+                margin: 15px;
+                padding: 15px;
+            }
+
+            .like-dislike-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .like-dislike-section button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            table, thead, tbody, th, td, tr { 
+                display: block; 
+            }
+            
+            thead tr { 
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            
+            tr { border: 1px solid #ccc; }
+            
+            td { 
+                border: none;
+                position: relative;
+                padding-left: 50%; 
+            }
+            
+            td:before { 
+                position: absolute;
+                top: 6px;
+                left: 6px;
+                width: 45%; 
+                padding-right: 10px; 
+                white-space: nowrap;
+                content: attr(data-column);
+                color: #1f3a93;
+                font-weight: bold;
+            }
         }
     </style>
 </head>
@@ -334,7 +499,7 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
                             <tr>
                                 <td><?= htmlspecialchars($comment['username']) ?></td>
                                 <td><?= htmlspecialchars($comment['comment']) ?></td>
-                                <td><?= $comment['created_at']->toDateTime()->format('F j, Y g:i A') ?></td>
+                                <td><?= $comment['created_at']->toDateTime()->setTimezone(new DateTimeZone('Asia/Jakarta'))->format('F j, Y H:i') ?> WIB</td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
