@@ -3,9 +3,10 @@ class NewsDetailPage
 {
     public function render()
     {
-        ?>
+?>
         <!DOCTYPE html>
         <html lang="en">
+
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,51 +98,53 @@ class NewsDetailPage
 
                     .tambah-berita-form .form-group input,
                     .tambah-berita-form .form-group textarea {
-                        margin-right: 0; 
+                        margin-right: 0;
                     }
                 }
             </style>
         </head>
+
         <body>
-        <div class="tambah-berita-container">
-        <h1>Tambah Berita</h1>
-        <form class="tambah-berita-form">
-            <div class="form-group">
-            <label for="judul">Judul</label>
-            <input type="text" class="form-control" id="judul" placeholder="Masukkan judul berita">
+            <div class="tambah-berita-container">
+                <h1>Tambah Berita</h1>
+                <form class="tambah-berita-form">
+                    <div class="form-group">
+                        <label for="judul">Judul</label>
+                        <input type="text" class="form-control" id="judul" placeholder="Masukkan judul berita">
+                    </div>
+                    <div class="form-group">
+                        <label for="foto">Foto</label>
+                        <input type="file" class="form-control" id="foto">
+                    </div>
+                    <div class="form-group">
+                        <label for="konten">Konten</label>
+                        <textarea class="form-control" id="konten" rows="3" placeholder="Masukkan konten berita"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ringkasan">Ringkasan</label>
+                        <input type="text" class="form-control" id="ringkasan" placeholder="Masukkan ringkasan berita">
+                    </div>
+                    <div class="form-group">
+                        <label for="penulis">Penulis</label>
+                        <input type="text" class="form-control" id="penulis" placeholder="Masukkan nama penulis">
+                    </div>
+                    <div class="form-group">
+                        <label for="kategori">Kategori</label>
+                        <select class="form-control" id="kategori">
+                            <option>Pilih kategori berita</option>
+                            <option>Olahraga</option>
+                            <option>Teknologi</option>
+                            <option>Gaya Hidup</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary">Tambah Berita</button>
+                </form>
             </div>
-            <div class="form-group">
-            <label for="foto">Foto</label>
-            <input type="file" class="form-control" id="foto">
-            </div>
-            <div class="form-group">
-            <label for="konten">Konten</label>
-            <textarea class="form-control" id="konten" rows="3" placeholder="Masukkan konten berita"></textarea>
-            </div>
-            <div class="form-group">
-            <label for="ringkasan">Ringkasan</label>
-            <input type="text" class="form-control" id="ringkasan" placeholder="Masukkan ringkasan berita">
-            </div>
-            <div class="form-group">
-            <label for="penulis">Penulis</label>
-            <input type="text" class="form-control" id="penulis" placeholder="Masukkan nama penulis">
-            </div>
-            <div class="form-group">
-            <label for="kategori">Kategori</label>
-            <select class="form-control" id="kategori">
-                <option>Pilih kategori berita</option>
-                <option>Olahraga</option>
-                <option>Teknologi</option>
-                <option>Gaya Hidup</option>
-                <option>Lainnya</option>
-            </select>
-            </div>
-            <button type="submit" class="btn-primary">Tambah Berita</button>
-        </form>
-        </div>
         </body>
+
         </html>
-        <?php
+<?php
     }
 }
 

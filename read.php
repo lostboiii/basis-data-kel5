@@ -1,32 +1,29 @@
 <?php
 session_start();
-require 'db.php';    
+require 'db.php';
 require 'vendor/autoload.php';
 $db = getDB();
 $collection = $db->news;
 $commentsCollection = $db->comments;
 $likesCollection = $db->likes;
 
-$id = null; // Initialize the ID variable
+$id = null;
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET['id']) && !empty($_GET['id'])) {
-        // Validate the ObjectId format
         $idString = $_GET['id'];
         if (preg_match('/^[a-f0-9]{24}$/', $idString)) {
             $id = new MongoDB\BSON\ObjectId($idString);
             $post = $collection->findOne(['_id' => $id]);
 
-            // Check if the post was found
             if (!$post) {
                 echo "Post not found.";
                 exit();
             }
 
-            // Increment the view count
             $collection->updateOne(
                 ['_id' => $id],
-                ['$inc' => ['views' => 1]] // Increment the views field by 1
+                ['$inc' => ['views' => 1]]
             );
         } else {
             echo "Invalid ID format.";
@@ -38,22 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
     }
 }
 
-// Handle comment submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         $comment = $_POST['comment'];
         $username = $_SESSION['username'];
-        $idString = $_POST['id']; // Get the ID from the POST data
+        $idString = $_POST['id'];
 
-        // Insert comment into the database
         $commentsCollection->insertOne([
-            'news_id' => new MongoDB\BSON\ObjectId($idString), // Use the ID from POST
+            'news_id' => new MongoDB\BSON\ObjectId($idString),
             'username' => $username,
             'comment' => $comment,
             'created_at' => new MongoDB\BSON\UTCDateTime(),
         ]);
 
-        // Redirect to the same page
         header("Location: read.php?id=" . $idString);
         exit();
     } else {
@@ -61,12 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment'])) {
     }
 }
 
-// Handle like/dislike submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin']) {
         $action = $_POST['action'];
         $username = $_SESSION['username'];
-        $idString = $_POST['id']; // Get the ID from the POST data
+        $idString = $_POST['id'];
 
         $existingLike = $likesCollection->findOne(['news_id' => new MongoDB\BSON\ObjectId($idString), 'username' => $username]);
 
@@ -77,13 +70,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             );
         } else {
             $likesCollection->insertOne([
-                'news_id' => new MongoDB\BSON\ObjectId($idString), // Use the ID from POST
+                'news_id' => new MongoDB\BSON\ObjectId($idString),
                 'username' => $username,
                 'type' => $action,
             ]);
         }
 
-        // Redirect to the same page
         header("Location: read.php?id=" . $idString);
         exit();
     } else {
@@ -91,13 +83,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
-// Fetch updated counts and comments after form submission
 $likeCount = $likesCollection->countDocuments(['news_id' => $id, 'type' => 'like']);
 $dislikeCount = $likesCollection->countDocuments(['news_id' => $id, 'type' => 'dislike']);
-$comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch updated comments
+$comments = $commentsCollection->find(['news_id' => $id])->toArray();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -170,7 +162,7 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
         }
 
         .news-image img {
-            max-width: 90%; 
+            max-width: 90%;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -253,7 +245,7 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .comments-list {
@@ -288,16 +280,19 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
         }
 
-        table, th, td {
+        table,
+        th,
+        td {
             border: 1px solid #ddd;
         }
 
-        th, td {
+        th,
+        td {
             padding: 12px;
             text-align: left;
             transition: background-color 0.3s ease;
@@ -318,7 +313,6 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
             background-color: #e6e6e6;
         }
 
-        /* Comments Section Styles */
         .comments-section {
             max-width: 800px;
             margin: 0 auto;
@@ -344,11 +338,11 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
         }
 
         .comments-section textarea {
-            width: calc(100% - 20px); /* Reduced width to account for right margin */
+            width: calc(100% - 20px);
             min-height: 80px;
             max-height: 150px;
             padding: 12px;
-            margin-right: 20px; /* Added right margin */
+            margin-right: 20px;
             border: 2px solid #ddd;
             border-radius: 6px;
             font-size: 1rem;
@@ -404,30 +398,37 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
                 margin-bottom: 10px;
             }
 
-            table, thead, tbody, th, td, tr { 
-                display: block; 
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
             }
-            
-            thead tr { 
+
+            thead tr {
                 position: absolute;
                 top: -9999px;
                 left: -9999px;
             }
-            
-            tr { border: 1px solid #ccc; }
-            
-            td { 
+
+            tr {
+                border: 1px solid #ccc;
+            }
+
+            td {
                 border: none;
                 position: relative;
-                padding-left: 50%; 
+                padding-left: 50%;
             }
-            
-            td:before { 
+
+            td:before {
                 position: absolute;
                 top: 6px;
                 left: 6px;
-                width: 45%; 
-                padding-right: 10px; 
+                width: 45%;
+                padding-right: 10px;
                 white-space: nowrap;
                 content: attr(data-column);
                 color: #1f3a93;
@@ -436,6 +437,7 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header class="header">
@@ -508,4 +510,5 @@ $comments = $commentsCollection->find(['news_id' => $id])->toArray(); // Fetch u
         </div>
     </div>
 </body>
+
 </html>

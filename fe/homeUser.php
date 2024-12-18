@@ -42,9 +42,10 @@ class Home
 
     public function render()
     {
-        ?>
+?>
         <!DOCTYPE html>
         <html lang="en">
+
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,7 +61,8 @@ class Home
 
                 /* Header Section */
                 .header {
-                    background: #295F98; /* Blue */
+                    background: #295F98;
+                    /* Blue */
                     color: white;
                     padding: 20px 30px;
                     display: flex;
@@ -84,7 +86,8 @@ class Home
                 }
 
                 .header h1:hover {
-                    color: #004085; /* Darker blue */
+                    color: #004085;
+                    /* Darker blue */
                 }
 
                 .category-dropdown {
@@ -106,7 +109,7 @@ class Home
                 .header2 {
                     text-align: center;
                     background-color: #ffffff;
-                    margin-top: 90px; 
+                    margin-top: 90px;
                     padding: 40px 30px;
                     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
                 }
@@ -170,13 +173,15 @@ class Home
                 .news-card h3 {
                     font-size: 1.5rem;
                     margin-bottom: 10px;
-                    color: #007bff; /* Blue */
+                    color: #007bff;
+                    /* Blue */
                     font-weight: 600;
                     transition: color 0.3s ease;
                 }
 
                 .news-card h3:hover {
-                    color: #004085; /* Darker blue */
+                    color: #004085;
+                    /* Darker blue */
                 }
 
                 .news-card p {
@@ -204,12 +209,14 @@ class Home
                 }
 
                 .news-card .actions .edit {
-                    background-color: #007bff; /* Blue */
+                    background-color: #007bff;
+                    /* Blue */
                     color: white;
                 }
 
                 .news-card .actions .edit:hover {
-                    background-color: #004085; /* Darker blue */
+                    background-color: #004085;
+                    /* Darker blue */
                 }
 
                 .news-card .actions .delete {
@@ -284,58 +291,59 @@ class Home
                     display: flex;
                     gap: 15px;
                 }
-
             </style>
         </head>
+
         <body>
             <!-- Header -->
             <<!-- Header -->
-            <header class="header">
-                <h1>News Portal</h1>
-                <div class="header-actions">
-                    <select class="category-dropdown">
-                        <option value="kategori">Kategori</option>
-                        <option value="kategori1">Kategori 1</option>
-                        <option value="kategori2">Kategori 2</option>
-                        <option value="kategori3">Kategori 3</option>
-                    </select>
-                    <div class="search-container">
-                        <input type="text" class="search-input" placeholder="Cari berita...">
-                        <img src="./../fe/img/search.png" alt="Search" class="search-icon">
+                <header class="header">
+                    <h1>News Portal</h1>
+                    <div class="header-actions">
+                        <select class="category-dropdown">
+                            <option value="kategori">Kategori</option>
+                            <option value="kategori1">Kategori 1</option>
+                            <option value="kategori2">Kategori 2</option>
+                            <option value="kategori3">Kategori 3</option>
+                        </select>
+                        <div class="search-container">
+                            <input type="text" class="search-input" placeholder="Cari berita...">
+                            <img src="./../fe/img/search.png" alt="Search" class="search-icon">
+                        </div>
                     </div>
+                </header>
+
+
+                <!-- Hero Section -->
+                <div class="header2">
+                    <img src="./../fe/img/newsTing.png" alt="News Tingting">
+                    <h2>Informasi Terkini, Cepat, dan Terpercaya</h2>
+                    <p>Berita terbaru yang selalu up-to-date dan penuh informasi terpercaya.</p>
                 </div>
-            </header>
 
-
-            <!-- Hero Section -->
-            <div class="header2">
-                <img src="./../fe/img/newsTing.png" alt="News Tingting">
-                <h2>Informasi Terkini, Cepat, dan Terpercaya</h2>
-                <p>Berita terbaru yang selalu up-to-date dan penuh informasi terpercaya.</p>
-            </div>
-
-            <!-- News Grid Section -->
-            <div class="news-grid">
-                <?php foreach ($this->news_data as $news): ?>
-                    <div class="news-card">
-                        <img src="<?= $news['image'] ?>" alt="<?= $news['title'] ?>">
-                        <div class="content">
-                            <a href="baca.php" class="link-articel"><?= $news['title'] ?></a>
-                            <p><?= $news['description'] ?></p>
-                            <div class="actions">
-                                <span><?= $news['date'] ?></span>
-                                <div>
-                                    <button class="edit">Edit</button>
-                                    <button class="delete">Hapus</button>
+                <!-- News Grid Section -->
+                <div class="news-grid">
+                    <?php foreach ($this->news_data as $news): ?>
+                        <div class="news-card">
+                            <img src="<?= $news['image'] ?>" alt="<?= $news['title'] ?>">
+                            <div class="content">
+                                <a href="baca.php" class="link-articel"><?= $news['title'] ?></a>
+                                <p><?= $news['description'] ?></p>
+                                <div class="actions">
+                                    <span><?= $news['date'] ?></span>
+                                    <div>
+                                        <button class="edit">Edit</button>
+                                        <button class="delete">Hapus</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
+                    <?php endforeach; ?>
+                </div>
         </body>
+
         </html>
-        <?php
+<?php
     }
 }
 

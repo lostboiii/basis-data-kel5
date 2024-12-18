@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,13 +52,13 @@
 
         .header h1 img {
             max-width: 100%;
-            width: 200px;   
-            height: auto;   
+            width: 200px;
+            height: auto;
         }
 
         @media (max-width: 768px) {
             .header h1 img {
-                width: 150px; 
+                width: 150px;
             }
         }
 
@@ -84,7 +85,7 @@
         }
 
         .news-image img {
-            max-width: 90%; 
+            max-width: 90%;
             height: auto;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -134,6 +135,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <header class="header">
@@ -175,4 +177,5 @@
         </div>
     </div>
 </body>
+
 </html>
